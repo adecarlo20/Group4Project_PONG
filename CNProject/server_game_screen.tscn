@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1y80jvuf77hh"]
+
+[ext_resource type="Script" path="res://server_game_screen.gd" id="1_e80yc"]
+[ext_resource type="FontFile" uid="uid://d3atb5nw5mxpx" path="res://pong_assets/runescape_uf.ttf" id="2_eayee"]
+[ext_resource type="Texture2D" uid="uid://cql38fv00k2df" path="res://pong_assets/left_pallete.png" id="2_ex44m"]
+[ext_resource type="Texture2D" uid="uid://je1q0dj0fmx3" path="res://pong_assets/right_pallete.png" id="3_wgcjn"]
+[ext_resource type="Texture2D" uid="uid://cnhxj11hhq28r" path="res://pong_assets/separator.png" id="4_gnuql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3s83h"]
+size = Vector2(1920, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lh142"]
+size = Vector2(50, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r62no"]
+size = Vector2(50, 1080)
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_e80yc")
+
+[node name="ServerBackground" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="ServerBackground"]
+position = Vector2(5, 5)
+anchor_mode = 0
+zoom = Vector2(0.6, 0.6)
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="ServerText" type="RichTextLabel" parent="."]
+offset_left = 611.0
+offset_top = -11.0
+offset_right = 1291.0
+offset_bottom = 146.0
+theme_override_fonts/normal_font = ExtResource("2_eayee")
+theme_override_font_sizes/normal_font_size = 130
+text = "SERVER VIEW"
+
+[node name="RPCtoClientButton" type="Button" parent="."]
+visible = false
+offset_left = 1749.0
+offset_top = 11.0
+offset_right = 1897.0
+offset_bottom = 70.0
+text = "Send RPC to client"
+
+[node name="LeftPLayer" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(100, 540)
+scale = Vector2(5, 5)
+texture = ExtResource("2_ex44m")
+
+[node name="RightPlayer" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1820, 540)
+scale = Vector2(5, 5)
+texture = ExtResource("3_wgcjn")
+
+[node name="Seperator" type="Sprite2D" parent="."]
+position = Vector2(960, 635)
+scale = Vector2(5, 5)
+texture = ExtResource("4_gnuql")
+
+[node name="Top" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(960, -25)
+shape = SubResource("RectangleShape2D_3s83h")
+
+[node name="Bottom" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(960, 1105)
+shape = SubResource("RectangleShape2D_3s83h")
+
+[node name="Left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-25, 540)
+shape = SubResource("RectangleShape2D_lh142")
+
+[node name="Right" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(1945, 540)
+shape = SubResource("RectangleShape2D_r62no")
+
+[node name="RightScore" type="Label" parent="."]
+offset_left = 1008.0
+offset_top = 96.0
+offset_right = 1048.0
+offset_bottom = 179.0
+theme_override_fonts/font = ExtResource("2_eayee")
+theme_override_font_sizes/font_size = 80
+text = "0"
+
+[node name="LeftScore" type="Label" parent="."]
+offset_left = 879.0
+offset_top = 95.0
+offset_right = 919.0
+offset_bottom = 178.0
+theme_override_fonts/font = ExtResource("2_eayee")
+theme_override_font_sizes/font_size = 80
+text = "0
+"
+
+[connection signal="pressed" from="RPCtoClientButton" to="." method="_on_rp_cto_client_button_pressed"]
+[connection signal="body_entered" from="Top" to="." method="_on_top_body_entered"]
+[connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]
+[connection signal="body_entered" from="Left" to="." method="_on_left_body_entered"]
+[connection signal="body_entered" from="Right" to="." method="_on_right_body_entered"]

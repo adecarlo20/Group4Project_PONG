@@ -1,0 +1,125 @@
+[gd_scene load_steps=11 format=3 uid="uid://b028lculwsr86"]
+
+[ext_resource type="Script" path="res://client_game_screen.gd" id="1_73jxr"]
+[ext_resource type="Texture2D" uid="uid://cql38fv00k2df" path="res://pong_assets/left_pallete.png" id="2_8akw3"]
+[ext_resource type="FontFile" uid="uid://d3atb5nw5mxpx" path="res://pong_assets/runescape_uf.ttf" id="2_llcuc"]
+[ext_resource type="Texture2D" uid="uid://je1q0dj0fmx3" path="res://pong_assets/right_pallete.png" id="3_q3j7s"]
+[ext_resource type="Texture2D" uid="uid://cnhxj11hhq28r" path="res://pong_assets/separator.png" id="4_b3ai2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v45nq"]
+size = Vector2(8, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqf11"]
+size = Vector2(8, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf8cc"]
+size = Vector2(1920, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axqcl"]
+size = Vector2(50, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfwjp"]
+size = Vector2(50, 1080)
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource("1_73jxr")
+
+[node name="ClientBackground" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="ClientBackground"]
+position = Vector2(5, 5)
+anchor_mode = 0
+zoom = Vector2(0.6, 0.6)
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="ClientText" type="RichTextLabel" parent="."]
+offset_left = 625.0
+offset_top = -9.0
+offset_right = 1270.0
+offset_bottom = 150.0
+theme_override_fonts/normal_font = ExtResource("2_llcuc")
+theme_override_font_sizes/normal_font_size = 130
+text = "CLIENT VIEW"
+
+[node name="LeftPlayer" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(100, 540)
+scale = Vector2(5, 5)
+texture = ExtResource("2_8akw3")
+
+[node name="Area2D" type="Area2D" parent="LeftPlayer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPlayer/Area2D"]
+shape = SubResource("RectangleShape2D_v45nq")
+
+[node name="RightPlayer" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1820, 540)
+scale = Vector2(5, 5)
+texture = ExtResource("3_q3j7s")
+
+[node name="Area2D" type="Area2D" parent="RightPlayer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightPlayer/Area2D"]
+shape = SubResource("RectangleShape2D_wqf11")
+
+[node name="Seperator" type="Sprite2D" parent="."]
+position = Vector2(960, 635)
+scale = Vector2(5, 5)
+texture = ExtResource("4_b3ai2")
+
+[node name="Bottom" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(960, -25)
+shape = SubResource("RectangleShape2D_hf8cc")
+
+[node name="Top" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(960, 1105)
+shape = SubResource("RectangleShape2D_hf8cc")
+
+[node name="Left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-25, 540)
+shape = SubResource("RectangleShape2D_axqcl")
+
+[node name="Right" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(1945, 540)
+shape = SubResource("RectangleShape2D_lfwjp")
+
+[node name="RightScore" type="Label" parent="."]
+offset_left = 1008.0
+offset_top = 96.0
+offset_right = 1048.0
+offset_bottom = 179.0
+theme_override_fonts/font = ExtResource("2_llcuc")
+theme_override_font_sizes/font_size = 80
+text = "0"
+
+[node name="LeftScore" type="Label" parent="."]
+offset_left = 879.0
+offset_top = 95.0
+offset_right = 919.0
+offset_bottom = 178.0
+theme_override_fonts/font = ExtResource("2_llcuc")
+theme_override_font_sizes/font_size = 80
+text = "0
+"
+
+[connection signal="area_shape_entered" from="Bottom" to="." method="_on_bottom_area_shape_entered"]
+[connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]
+[connection signal="area_shape_entered" from="Top" to="." method="_on_top_area_shape_entered"]
+[connection signal="body_entered" from="Top" to="." method="_on_top_body_entered"]
+[connection signal="area_shape_entered" from="Left" to="." method="_on_left_area_shape_entered"]
+[connection signal="area_shape_entered" from="Right" to="." method="_on_right_area_shape_entered"]

@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=3 uid="uid://cptlqrmmcsn0h"]
+
+[ext_resource type="Script" path="res://WelcomScreen.gd" id="1_77u5h"]
+[ext_resource type="FontFile" uid="uid://d3atb5nw5mxpx" path="res://pong_assets/runescape_uf.ttf" id="2_q15uh"]
+
+[sub_resource type="Gradient" id="Gradient_ok6ne"]
+offsets = PackedFloat32Array(0, 0.995885)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7r7wr"]
+gradient = SubResource("Gradient_ok6ne")
+
+[node name="WelcomScreen" type="Node2D"]
+script = ExtResource("1_77u5h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1165.0
+offset_bottom = 655.0
+texture = SubResource("GradientTexture2D_7r7wr")
+
+[node name="ServerButton" type="Button" parent="."]
+offset_left = 514.0
+offset_top = 445.0
+offset_right = 734.0
+offset_bottom = 509.0
+theme_override_fonts/font = ExtResource("2_q15uh")
+theme_override_font_sizes/font_size = 50
+text = "Server"
+
+[node name="ClientButton" type="Button" parent="."]
+offset_left = 514.0
+offset_top = 520.0
+offset_right = 734.0
+offset_bottom = 585.0
+theme_override_fonts/font = ExtResource("2_q15uh")
+theme_override_font_sizes/font_size = 50
+text = "Client"
+
+[node name="HostText" type="RichTextLabel" parent="."]
+offset_left = 406.0
+offset_top = 460.0
+offset_right = 528.0
+offset_bottom = 514.0
+theme_override_fonts/normal_font = ExtResource("2_q15uh")
+theme_override_font_sizes/normal_font_size = 50
+text = "Host:"
+
+[node name="JoinText" type="RichTextLabel" parent="."]
+offset_left = 360.0
+offset_top = 527.0
+offset_right = 528.0
+offset_bottom = 583.0
+theme_override_fonts/normal_font = ExtResource("2_q15uh")
+theme_override_font_sizes/normal_font_size = 50
+text = "Join as:"
+
+[node name="GameTitle" type="RichTextLabel" parent="."]
+offset_left = 393.0
+offset_top = 52.0
+offset_right = 1505.0
+offset_bottom = 233.0
+theme_override_fonts/normal_font = ExtResource("2_q15uh")
+theme_override_font_sizes/normal_font_size = 200
+text = "PONG"
+
+[node name="IPEnter" type="LineEdit" parent="."]
+offset_left = 514.0
+offset_top = 262.0
+offset_right = 734.0
+offset_bottom = 327.0
+theme_override_colors/font_color = Color(0.513726, 0.513726, 0.513726, 1)
+theme_override_fonts/font = ExtResource("2_q15uh")
+theme_override_font_sizes/font_size = 50
+text = "127.0.0.1"
+alignment = 1
+
+[node name="IPText" type="RichTextLabel" parent="."]
+offset_left = 290.0
+offset_top = 273.0
+offset_right = 509.0
+offset_bottom = 330.0
+theme_override_fonts/normal_font = ExtResource("2_q15uh")
+theme_override_font_sizes/normal_font_size = 50
+text = "IP Address:"
+
+[node name="PortEnter" type="LineEdit" parent="."]
+offset_left = 514.0
+offset_top = 336.0
+offset_right = 734.0
+offset_bottom = 401.0
+theme_override_colors/font_color = Color(0.513726, 0.513726, 0.513726, 1)
+theme_override_fonts/font = ExtResource("2_q15uh")
+theme_override_font_sizes/font_size = 50
+text = "62830"
+alignment = 1
+
+[node name="PortText" type="RichTextLabel" parent="."]
+offset_left = 410.0
+offset_top = 345.0
+offset_right = 535.0
+offset_bottom = 400.0
+theme_override_fonts/normal_font = ExtResource("2_q15uh")
+theme_override_font_sizes/normal_font_size = 50
+text = "Port:"
+
+[connection signal="pressed" from="ServerButton" to="." method="_on_server_button_pressed"]
+[connection signal="pressed" from="ClientButton" to="." method="_on_client_button_pressed"]
+[connection signal="text_changed" from="IPEnter" to="." method="_on_ip_enter_text_changed"]
+[connection signal="text_changed" from="PortEnter" to="." method="_on_port_enter_text_changed"]

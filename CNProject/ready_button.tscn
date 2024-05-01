@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://6hesdrvexds7"]
+
+[ext_resource type="FontFile" uid="uid://d3atb5nw5mxpx" path="res://pong_assets/runescape_uf.ttf" id="1_ptedy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jynd1"]
+bg_color = Color(0.556863, 0, 0.0666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2wa1"]
+bg_color = Color(0, 0.454902, 0, 1)
+
+[node name="ReadyButton" type="Button"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 474.0
+offset_top = 203.0
+offset_right = 834.0
+offset_bottom = 373.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_translate = false
+theme_override_fonts/font = ExtResource("1_ptedy")
+theme_override_font_sizes/font_size = 150
+theme_override_styles/normal = SubResource("StyleBoxFlat_jynd1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e2wa1")
+toggle_mode = true
+text = "Ready"

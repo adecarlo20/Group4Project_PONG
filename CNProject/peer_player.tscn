@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://tyautgvpgbek"]
+
+[ext_resource type="Texture2D" uid="uid://cql38fv00k2df" path="res://pong_assets/left_pallete.png" id="1_24ak2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j24ft"]
+size = Vector2(42, 193)
+
+[node name="PeerPlayer" type="CharacterBody2D"]
+
+[node name="PlayerShape" type="Sprite2D" parent="."]
+scale = Vector2(5, 6)
+texture = ExtResource("1_24ak2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.31633e-11, 1.46366e-11)
+shape = SubResource("RectangleShape2D_j24ft")

@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://mxefd04k6k8i"]
+
+[ext_resource type="Script" path="res://Client_Selection_Scene.gd" id="1_giu2p"]
+[ext_resource type="FontFile" uid="uid://d3atb5nw5mxpx" path="res://pong_assets/runescape_uf.ttf" id="2_2xam3"]
+
+[node name="Client_Selection_Scene" type="Node2D"]
+script = ExtResource("1_giu2p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="GameTitle" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -358.0
+offset_top = 92.0
+offset_right = 446.0
+offset_bottom = 329.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_2xam3")
+theme_override_font_sizes/normal_font_size = 200
+text = "Select Side"
+
+[node name="JoinLeft" type="Button" parent="."]
+offset_left = 137.0
+offset_top = 482.0
+offset_right = 637.0
+offset_bottom = 732.0
+theme_override_fonts/font = ExtResource("2_2xam3")
+theme_override_font_sizes/font_size = 70
+text = "Join Left"
+
+[node name="JoinRight" type="Button" parent="."]
+offset_left = 1321.0
+offset_top = 482.0
+offset_right = 1821.0
+offset_bottom = 732.0
+theme_override_fonts/font = ExtResource("2_2xam3")
+theme_override_font_sizes/font_size = 70
+text = "Join Right"
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(5, 5)
+zoom = Vector2(0.6, 0.6)
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+
+[connection signal="pressed" from="JoinLeft" to="." method="_on_join_left_pressed"]
+[connection signal="pressed" from="JoinRight" to="." method="_on_join_right_pressed"]
